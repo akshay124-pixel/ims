@@ -56,7 +56,7 @@ function OutStockDashboard() {
 
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/update-out/${selectedEntry._id}`,
+        `https://imserver.onrender.com/api/update-out/${selectedEntry._id}`,
         { quantity, remarks, assemblyStatus }
       );
 
@@ -88,9 +88,12 @@ function OutStockDashboard() {
   // Export
   const handleExport = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/outexport", {
-        responseType: "arraybuffer", // Get the response as binary data
-      });
+      const response = await axios.get(
+        "https://imserver.onrender.com/api/outexport",
+        {
+          responseType: "arraybuffer", // Get the response as binary data
+        }
+      );
 
       // Convert the response data to a workbook using XLSX
       const wb = XLSX.read(response.data, { type: "array" });
@@ -131,7 +134,9 @@ function OutStockDashboard() {
   useEffect(() => {
     const fetchStockData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/stocks");
+        const response = await axios.get(
+          "https://imserver.onrender.com/api/stocks"
+        );
         setStockData(response.data);
       } catch (error) {
         toast.error("Failed to load stock data.");
@@ -163,14 +168,17 @@ function OutStockDashboard() {
       setErrorMessage(""); // Clear any previous error messages
 
       // Send request to backend
-      const response = await axios.post("http://localhost:4000/api/out", {
-        stockName,
-        quantity,
-        recipientName,
-        targetTeam,
-        purpose,
-        dateOfIssue,
-      });
+      const response = await axios.post(
+        "https://imserver.onrender.com/api/out",
+        {
+          stockName,
+          quantity,
+          recipientName,
+          targetTeam,
+          purpose,
+          dateOfIssue,
+        }
+      );
 
       if (response.data.message === "Stock issued successfully") {
         setSuccessMessage(response.data.message);
@@ -245,7 +253,9 @@ function OutStockDashboard() {
   useEffect(() => {
     const fetchOutStocks = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/outstock"); // Adjust API endpoint as needed
+        const response = await axios.get(
+          "https://imserver.onrender.com/api/outstock"
+        ); // Adjust API endpoint as needed
         setOutStocks(response.data);
         setFilteredOutStocks(response.data);
         setLoading(false);
@@ -265,7 +275,7 @@ function OutStockDashboard() {
   useEffect(() => {
     // Adjust the URL to your API endpoint that fetches stock data
     axios
-      .get("http://localhost:4000/api/out")
+      .get("https://imserver.onrender.com/api/out")
       .then((response) => {
         setStockDetails(response.data); // Set fetched data to the stockDetails state
       })

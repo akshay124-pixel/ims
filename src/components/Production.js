@@ -36,7 +36,9 @@ const Production = () => {
   const fetchItems = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:4000/api/production");
+      const response = await axios.get(
+        "https://imserver.onrender.com/api/production"
+      );
 
       const filteredItems = response.data.filter(
         (item) =>
@@ -76,7 +78,7 @@ const Production = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/update-out/${selectedEntry._id}`,
+        `https://imserver.onrender.com/api/update-out/${selectedEntry._id}`,
         { remarks, assemblyStatus }
       );
 
@@ -137,7 +139,7 @@ const Production = () => {
       // Iterate through all active stocks to update their assembly status
       for (const stock of activeStocks) {
         const response = await axios.put(
-          `http://localhost:4000/api/update-out/${stock._id}`,
+          `https://imserver.onrender.com/api/update-out/${stock._id}`,
           { assemblyStatus: "Assembled" } // Update the assembly status
         );
 

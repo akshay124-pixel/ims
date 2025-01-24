@@ -15,7 +15,7 @@ function OutFinshGood() {
     const fetchOutFinishedGoods = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:4000/api/fetchoutFinishedGoods"
+          "https://imserver.onrender.com/api/fetchoutFinishedGoods"
         );
         setOutFinishedGoods(response.data);
       } catch (error) {
@@ -42,7 +42,7 @@ function OutFinshGood() {
     try {
       // Send request using Axios to export stock data
       const response = await axios.get(
-        "http://localhost:4000/api/out-finished-goods-export",
+        "https://imserver.onrender.com/api/out-finished-goods-export",
         {
           responseType: "arraybuffer", // Receive the response as a binary array
         }

@@ -32,7 +32,7 @@ function FinishedGoods() {
       setLoading(true);
       try {
         const response = await axios.get(
-          "http://localhost:4000/api/finished-goods"
+          "https://imserver.onrender.com/api/finished-goods"
         );
         setFinishedGoods(response.data);
       } catch (error) {
@@ -88,7 +88,10 @@ function FinishedGoods() {
     };
 
     try {
-      await axios.post("http://localhost:4000/api/outFinishedGoods", payload);
+      await axios.post(
+        "https://imserver.onrender.com/api/outFinishedGoods",
+        payload
+      );
 
       console.log("Submitting Data:", payload);
       toast.success("Form submitted successfully!");

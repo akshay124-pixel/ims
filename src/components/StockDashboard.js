@@ -35,9 +35,12 @@ function StockDashboard() {
   const handleExport = async () => {
     try {
       // Send request using Axios to export stock data
-      const response = await axios.get("http://localhost:4000/api/export", {
-        responseType: "arraybuffer", // Receive the response as a binary array
-      });
+      const response = await axios.get(
+        "https://imserver.onrender.com/api/export",
+        {
+          responseType: "arraybuffer", // Receive the response as a binary array
+        }
+      );
 
       // Create a Blob from the received array buffer
       const blob = new Blob([response.data], {
@@ -63,7 +66,9 @@ function StockDashboard() {
   useEffect(() => {
     const fetchStocks = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/stocks");
+        const response = await axios.get(
+          "https://imserver.onrender.com/api/stocks"
+        );
         setStocks(response.data);
         setFilteredStocks(response.data); // Initialize filteredStocks with all stocks
       } catch (error) {
@@ -133,7 +138,7 @@ function StockDashboard() {
 
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/stock/${selectedEntry._id}`,
+        `https://imserver.onrender.com/api/stock/${selectedEntry._id}`,
         updatedData
       );
 
@@ -208,7 +213,7 @@ function StockDashboard() {
 
         // Send valid stocks to the backend
         const response = await axios.post(
-          "http://localhost:4000/api/bulk-upload",
+          "https://imserver.onrender.com/api/bulk-upload",
           validStocks,
           {
             headers: { "Content-Type": "application/json" },
@@ -251,7 +256,7 @@ function StockDashboard() {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/add",
+        "https://imserver.onrender.com/api/add",
         newStock,
         {
           withCredentials: true,
@@ -263,7 +268,7 @@ function StockDashboard() {
 
         // Fetch the updated list of stocks after adding the new stock
         const updatedResponse = await axios.get(
-          "http://localhost:4000/api/stocks",
+          "https://imserver.onrender.com/api/stocks",
           {
             withCredentials: true,
           }
@@ -458,7 +463,9 @@ function StockDashboard() {
   // Fetch stock data from MongoDB
   const fetchStockData = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/stocks");
+      const response = await axios.get(
+        "https://imserver.onrender.com/api/stocks"
+      );
       const stock = response.data;
 
       // Create stock data object (map stock name to quantity)
