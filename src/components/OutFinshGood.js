@@ -210,7 +210,6 @@ function OutFinshGood() {
               borderRadius: "15px", // Adjusted for consistent border radius
               marginTop: "20px", // Add margin for spacing from top
               display: "block", // Ensures the table body scrolls
-              zIndex: "2",
               overflowY: "auto", // Adds vertical scroll
               maxHeight: "450px", // Set a fixed height for scrolling
               maxWidth: "100%", // Make sure it fits within the container
