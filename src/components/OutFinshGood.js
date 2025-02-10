@@ -199,120 +199,122 @@ function OutFinshGood() {
           height: "auto",
         }}
       >
-        <Table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            textAlign: "center",
-          }}
-          striped
-          bordered
-          hover
-        >
-          <thead
+        {loading ? (
+          <Box sx={{ display: "flex", justifyContent: "center", marginTop: 4 }}>
+            <CircularProgress />
+          </Box>
+        ) : outFinishedGoods.length > 0 ? (
+          <Table
             style={{
-              background: "linear-gradient(135deg, #2575fc, #6a11cb)",
-              color: "white",
-              fontSize: "1.1rem",
-              padding: "15px 20px",
+              width: "100%",
+              borderCollapse: "collapse",
               textAlign: "center",
-              position: "sticky",
-              top: 0,
-              zIndex: 2,
             }}
+            striped
+            bordered
+            hover
           >
-            <tr
+            <thead
               style={{
                 background: "linear-gradient(135deg, #2575fc, #6a11cb)",
+                color: "white",
+                fontSize: "1.1rem",
+                padding: "15px 20px",
+                textAlign: "center",
+                position: "sticky",
+                top: 0,
+                zIndex: 2,
               }}
             >
-              {[
-                "Product Name",
-                "Quantity",
-                "Address",
-                "Price",
-                "Recipient Name",
-                "Date of Issue",
-                "Actions",
-              ].map((header) => (
-                <th
-                  key={header}
-                  style={{
-                    padding: "15px 20px",
-                    textAlign: "center",
-                    backgroundColor: "transparent",
-                    color: "white",
-                    position: "sticky",
-                    top: 0,
-                    zIndex: 2,
-                  }}
-                >
-                  {header}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody
-            style={{
-              backgroundColor: "white",
-              overflowY: "auto",
-              maxHeight: "calc(450px - 45px)",
-            }}
-          >
-            {outFinishedGoods.map((item) => (
-              <tr key={item._id}>
-                <td
-                  style={{
-                    padding: "15px 20px",
-                    textAlign: "center",
-                  }}
-                >
-                  {item.productName}
-                </td>
-                <td style={{ padding: "15px 20px", textAlign: "center" }}>
-                  {item.quantity}
-                </td>
-                <td style={{ padding: "15px 20px", textAlign: "center" }}>
-                  {item.address}
-                </td>
-                <td style={{ padding: "15px 20px", textAlign: "center" }}>
-                  {item.price}
-                </td>
-                <td style={{ padding: "15px 20px", textAlign: "center" }}>
-                  {item.recipientName}
-                </td>
-                <td style={{ padding: "15px 20px", textAlign: "center" }}>
-                  {new Date(item.dateOfIssue).toLocaleDateString()}
-                </td>
-                <td style={{ padding: "15px 20px" }}>
-                  <Row>
-                    <Col className="d-flex justify-content-center">
-                      <Button
-                        variant="primary"
-                        style={{
-                          width: "40px",
-                          height: "40px",
-                          borderRadius: "50%",
-                          transition: "transform 0.2s",
-                        }}
-                        onClick={() => handleShow(item)}
-                        onMouseOver={(e) =>
-                          (e.target.style.transform = "scale(1.1)")
-                        }
-                        onMouseOut={(e) =>
-                          (e.target.style.transform = "scale(1)")
-                        }
-                      >
-                        <FaEye style={{ marginBottom: "3px" }} />
-                      </Button>
-                    </Col>
-                  </Row>
-                </td>
+              <tr>
+                {[
+                  "Product Name",
+                  "Quantity",
+                  "Address",
+                  "Price",
+                  "Recipient Name",
+                  "Date of Issue",
+                  "Actions",
+                ].map((header) => (
+                  <th
+                    key={header}
+                    style={{
+                      padding: "15px 20px",
+                      textAlign: "center",
+                      backgroundColor: "transparent",
+                      color: "white",
+                      position: "sticky",
+                      top: 0,
+                      zIndex: 2,
+                    }}
+                  >
+                    {header}
+                  </th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </Table>
-
+            </thead>
+            <tbody
+              style={{
+                backgroundColor: "white",
+                overflowY: "auto",
+                maxHeight: "calc(450px - 45px)",
+              }}
+            >
+              {outFinishedGoods.map((item) => (
+                <tr key={item._id}>
+                  <td style={{ padding: "15px 20px", textAlign: "center" }}>
+                    {item.productName}
+                  </td>
+                  <td style={{ padding: "15px 20px", textAlign: "center" }}>
+                    {item.quantity}
+                  </td>
+                  <td style={{ padding: "15px 20px", textAlign: "center" }}>
+                    {item.address}
+                  </td>
+                  <td style={{ padding: "15px 20px", textAlign: "center" }}>
+                    {item.price}
+                  </td>
+                  <td style={{ padding: "15px 20px", textAlign: "center" }}>
+                    {item.recipientName}
+                  </td>
+                  <td style={{ padding: "15px 20px", textAlign: "center" }}>
+                    {new Date(item.dateOfIssue).toLocaleDateString()}
+                  </td>
+                  <td style={{ padding: "15px 20px" }}>
+                    <Row>
+                      <Col className="d-flex justify-content-center">
+                        <Button
+                          variant="primary"
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            borderRadius: "50%",
+                            transition: "transform 0.2s",
+                          }}
+                          onClick={() => handleShow(item)}
+                          onMouseOver={(e) =>
+                            (e.target.style.transform = "scale(1.1)")
+                          }
+                          onMouseOut={(e) =>
+                            (e.target.style.transform = "scale(1)")
+                          }
+                        >
+                          <FaEye style={{ marginBottom: "3px" }} />
+                        </Button>
+                      </Col>
+                    </Row>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        ) : (
+          <Box sx={{ textAlign: "center", marginTop: 4 }}>
+            <p style={{ fontSize: "16px", fontStyle: "italic", color: "gray" }}>
+              No finished goods available.
+            </p>
+          </Box>
+        )}
         {/* Modal for Viewing Details */}
         <Modal show={showModal} onHide={handleClose} centered>
           {/* Modal Header */}
