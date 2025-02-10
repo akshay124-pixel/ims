@@ -109,7 +109,6 @@ function OutFinshGood() {
         <Link to="/finsh" style={{ textDecoration: "none" }}>
           {" "}
           <Button
-            // Replace with your function to handle the button click
             style={{
               display: "flex",
               alignItems: "center",
